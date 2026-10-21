@@ -15,12 +15,12 @@ class PotraceLineArt:
     def INPUT_TYPES(cls):
         return {"required": {
             "image": ("IMAGE",),
-            "threshold": ("FLOAT", {"default": 165 / 255, "min": 0.0, "max": 1.0, "step": 0.001}),
+            "threshold": ("FLOAT", {"default": 0.70, "min": 0.0, "max": 1.0, "step": 0.001}),
             "despeckle": ("INT", {"default": 3, "min": 0, "max": 100, "step": 1}),
             "smoothness": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.34, "step": 0.05}),
             "antialias": ("INT", {"default": 3, "min": 1, "max": 4, "step": 1}),
             "pre_blur": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 4.0, "step": 0.1}),
-            "median_filter": ("BOOLEAN", {"default": True}),
+            "median_filter": ("BOOLEAN", {"default": False}),
             "output_scale": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
             "transparent_background": ("BOOLEAN", {"default": True}),
         }}
@@ -31,7 +31,7 @@ class PotraceLineArt:
     CATEGORY = "image/potrace"
 
     def trace(self, image, threshold, despeckle, smoothness, antialias,
-              pre_blur=0.0, median_filter=True, output_scale=1,
+              pre_blur=0.0, median_filter=False, output_scale=1,
               transparent_background=True):
         frames = []
         for frame in image.detach().cpu().numpy():

@@ -4,17 +4,17 @@
 
 ## 処理例：ビフォー・アフター
 
-標準設定で処理した例です。出力サイズは入力と同じ 904×1740 ピクセルです。右の画像は見やすいように白背景に重ねたプレビューで、[実際の出力は透過PNG](docs/images/artwork_after_transparent.png)です。
+ご提供の `新規キャンバス6.png` と、ComfyUI で処理した `potrace_line_art_white_00010_.png` をリネームして同梱しました。アフターは `transparent_background=false` の白背景出力で、入力と同じ 1024×1536 ピクセルです。
 
 | 入力画像 | 処理後（白背景プレビュー） |
 | :---: | :---: |
-| <img src="docs/images/artwork_before.png" alt="処理前の線画" width="350"> | <img src="docs/images/artwork_after_on_white.png" alt="Potrace で処理した線画" width="350"> |
+| <img src="examples/example_lineart.png" alt="処理前の線画" width="350"> | <img src="examples/example_lineart_processed_white.png" alt="Potrace で処理した白背景の線画" width="350"> |
 
 顔まわりの同じ 300×300 ピクセルを切り抜き、線の違いが見えるように 3 倍に拡大しました。
 
 | 処理前の拡大 | 処理後の拡大 |
 | :---: | :---: |
-| <img src="docs/images/detail_before.png" alt="顔まわりの処理前拡大" width="350"> | <img src="docs/images/detail_after.png" alt="顔まわりの処理後拡大" width="350"> |
+| <img src="docs/images/example_face_before.png" alt="顔まわりの処理前拡大" width="350"> | <img src="docs/images/example_face_after.png" alt="顔まわりの処理後拡大" width="350"> |
 
 白黒線画を [Potrace](https://potrace.sourceforge.net/) でなぞり直し、曲線をアンチエイリアス付きの画像として出力する ComfyUI カスタムノードです。標準設定では背景が透過になり、入力と同じ縦横サイズで出力します。画像のバッチ入力にも対応します。
 
@@ -46,18 +46,18 @@
 
 | 入力 | 説明 |
 | --- | --- |
-| `threshold` | これより暗い画素を線とみなします。標準値は `165/255 ≒ 0.647`。薄い線が消える場合は上げます。 |
+| `threshold` | これより暗い画素を線とみなします。標準値は `0.70`。薄い線が消える場合は上げます。 |
 | `despeckle` | 小さな点を除去する Potrace の面積しきい値。細部が消える場合は下げます。 |
 | `smoothness` | Potrace の曲線化の強さ。`0` は角を残し、値を上げると滑らかになります。 |
 | `antialias` | 曲線を描画する内部倍率。標準値は `3`。出力サイズとは別です。 |
 | `pre_blur` | メディアン処理後、二値化前のガウスぼかし半径。標準では無効です。 |
-| `median_filter` | 3×3 メディアンフィルターで細かなノイズを抑えます。標準で有効です。 |
-| `output_scale` | 出力の縦横倍率。標準値 `1` は入力と同じサイズ。`2` なら 904×1740 入力から 1808×3480 を出力します。 |
+| `median_filter` | 3×3 メディアンフィルターで細かなノイズを抑えます。標準では無効です。細線が消える場合は無効のままにしてください。 |
+| `output_scale` | 出力の縦横倍率。標準値 `1` は入力と同じサイズ。`2` なら 1024×1536 入力から 2048×3072 を出力します。 |
 | `transparent_background` | `true` で白背景を透明にし、線の濃さをアルファに変換します。標準は `true`。 |
 
-標準設定は `Artwork_potrace_smooth.png` を作成した検証スクリプトと同じ前処理・曲線描画を使い、出力を1倍の透過PNGにしています。検証画像と同じ白背景・2倍出力が必要な場合は `transparent_background=false`、`output_scale=2` にしてください。細線が消える場合は `despeckle` または `threshold` を下げてください。
+標準設定の `threshold=0.70`、`median_filter=false` は、濃い線と細い線のある画像を比較して選びました。細線が消える場合は `threshold` を上げるか、`despeckle` を下げてください。
 
-サンプル: [透過背景（標準）](examples/potrace_line_art.json) / [白背景](examples/potrace_line_art_white.json)。付属の [example_lineart.png](examples/example_lineart.png) を `ComfyUI/input/` にコピーしてからワークフローを読み込むか、`Load Image` で手持ちの線画を選んでください。
+サンプル: [透過背景（標準）](examples/potrace_line_art.json) / [白背景](examples/potrace_line_art_white.json)。付属の [入力画像](examples/example_lineart.png) を `ComfyUI/input/` にコピーしてからワークフローを読み込むか、`Load Image` で手持ちの線画を選んでください。[白背景の出力例](examples/example_lineart_processed_white.png) は後者のワークフローの設定です。
 
 Potrace は二値化後の形をなぞります。低解像度で潰れた細部や、途切れた線を推測して復元するものではありません。純 Python 実装のため、大きな画像や複雑な線画は処理に時間がかかります。2倍出力は元画像の4倍の画素数を使います。
 

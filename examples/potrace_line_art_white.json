@@ -41,7 +41,7 @@
       ],
       "outputs": [{"name": "image", "type": "IMAGE", "links": [2]}],
       "properties": {"Node name for S&R": "PotraceLineArt"},
-      "widgets_values": [0.6470588235294118, 3, 1.0, 3, 0.0, true, 1, false]
+      "widgets_values": [0.7, 3, 1.0, 3, 0.0, false, 1, false]
     },
     {
       "id": 3,
