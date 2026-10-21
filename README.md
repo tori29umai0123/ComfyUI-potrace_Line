@@ -4,9 +4,7 @@
 
 ## 処理例：ビフォー・アフター
 
-ご提供の `新規キャンバス6.png` と、ComfyUI で処理した `potrace_line_art_white_00010_.png` をリネームして同梱しました。アフターは `transparent_background=false` の白背景出力で、入力と同じ 1024×1536 ピクセルです。
-
-| 入力画像 | 処理後（白背景プレビュー） |
+| 入力画像 | 処理後（白背景） |
 | :---: | :---: |
 | <img src="examples/example_lineart.png" alt="処理前の線画" width="350"> | <img src="examples/example_lineart_processed_white.png" alt="Potrace で処理した白背景の線画" width="350"> |
 

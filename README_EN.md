@@ -2,9 +2,7 @@
 
 ## Before and after
 
-The supplied `新規キャンバス6.png` and the ComfyUI output `potrace_line_art_white_00010_.png` are included under simpler names. The after image has a white background (`transparent_background=false`) and matches the 1024×1536 input dimensions.
-
-| Input | Processed (white background preview) |
+| Input | Processed (white background) |
 | :---: | :---: |
 | <img src="examples/example_lineart.png" alt="Original line art" width="350"> | <img src="examples/example_lineart_processed_white.png" alt="Line art processed with Potrace on white" width="350"> |
 
