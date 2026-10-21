@@ -1,8 +1,22 @@
 # ComfyUI-potrace_Line
 
+## Before and after
+
+Processed with the default settings. Output dimensions match the 904×1740 input. The image on the right is composited onto white for comparison; [the actual output is a transparent PNG](docs/images/artwork_after_transparent.png).
+
+| Input | Processed (white background preview) |
+| :---: | :---: |
+| <img src="docs/images/artwork_before.png" alt="Original line art" width="350"> | <img src="docs/images/artwork_after_on_white.png" alt="Line art processed with Potrace" width="350"> |
+
+The same 300×300 pixel area around the face is cropped from each image and enlarged 3× to show the lines clearly.
+
+| Before, enlarged | After, enlarged |
+| :---: | :---: |
+| <img src="docs/images/detail_before.png" alt="Face detail before processing" width="350"> | <img src="docs/images/detail_after.png" alt="Face detail after processing" width="350"> |
+
 [日本語](README.md)
 
-A ComfyUI custom node that retraces black and white line art with [Potrace](https://potrace.sourceforge.net/) and rasterizes the curves into an antialiased image on a white background. The default output has the same width and height as the input. Batch images are supported.
+A ComfyUI custom node that retraces black and white line art with [Potrace](https://potrace.sourceforge.net/) and rasterizes the curves into an antialiased image. The default output has a transparent background and the same width and height as the input. Batch images are supported.
 
 ## Installation
 

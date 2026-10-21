@@ -2,7 +2,21 @@
 
 [English](README_EN.md)
 
-白黒線画を [Potrace](https://potrace.sourceforge.net/) でなぞり直し、曲線をアンチエイリアス付きの白背景画像として出力する ComfyUI カスタムノードです。標準設定では入力と同じ縦横サイズで出力します。画像のバッチ入力にも対応します。
+## 処理例：ビフォー・アフター
+
+標準設定で処理した例です。出力サイズは入力と同じ 904×1740 ピクセルです。右の画像は見やすいように白背景に重ねたプレビューで、[実際の出力は透過PNG](docs/images/artwork_after_transparent.png)です。
+
+| 入力画像 | 処理後（白背景プレビュー） |
+| :---: | :---: |
+| <img src="docs/images/artwork_before.png" alt="処理前の線画" width="350"> | <img src="docs/images/artwork_after_on_white.png" alt="Potrace で処理した線画" width="350"> |
+
+顔まわりの同じ 300×300 ピクセルを切り抜き、線の違いが見えるように 3 倍に拡大しました。
+
+| 処理前の拡大 | 処理後の拡大 |
+| :---: | :---: |
+| <img src="docs/images/detail_before.png" alt="顔まわりの処理前拡大" width="350"> | <img src="docs/images/detail_after.png" alt="顔まわりの処理後拡大" width="350"> |
+
+白黒線画を [Potrace](https://potrace.sourceforge.net/) でなぞり直し、曲線をアンチエイリアス付きの画像として出力する ComfyUI カスタムノードです。標準設定では背景が透過になり、入力と同じ縦横サイズで出力します。画像のバッチ入力にも対応します。
 
 ## インストール
 
